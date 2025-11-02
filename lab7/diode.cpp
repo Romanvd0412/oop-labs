@@ -1,6 +1,7 @@
 #include "diode.h"
 #include <iostream>
 #include <algorithm> 
+#include <limits>
 
 using namespace std;
 
@@ -19,8 +20,11 @@ diode DiodesCreator::getNewDiodeFromUser() {
 
     while (!isAllValid)
     {
-        cout << "Enter values: forward voltage, max backward current, purpose" << endl;
-        cin >> forwardVoltage >> maxBackwardCurrent >> purpose;
+        cout << "Enter values: forward voltage, max backward current" << endl;
+        cin >> forwardVoltage >> maxBackwardCurrent;
+        cout << "Enter purpose" << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, purpose);
 
         if (forwardVoltage <= 0 || maxBackwardCurrent <= 0 || purpose.empty()) {
             cout << "Values must be filled!" << endl;
