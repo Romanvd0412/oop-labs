@@ -22,11 +22,18 @@ int main() {
 
     
     cout << "\nDisplaying Info:" << endl;
+
+    double averageLength = 0;
     
     for (const auto* conductor : conductors) {
+        averageLength += conductor->getLength();
         cout << "\n"; 
         conductor->displayInfo();
     }
+
+    averageLength /= conductors.size();
+
+    cout << "\nAverage length " << averageLength << " m." << endl;
 
     cout << "\nCleaning up memory..." << endl;
     for (auto* conductor : conductors) {
